@@ -221,8 +221,9 @@ namespace ProjectLinksServer.WebAPI.Migrations
                         .IsRequired();
 
                     b.HasOne("ProjectLinksServer.WebAPI.Models.Category", "MainCategory")
-                        .WithMany()
-                        .HasForeignKey("MainCategoryId");
+                        .WithMany("SubCategories")
+                        .HasForeignKey("MainCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("AppUser");
 
@@ -259,6 +260,8 @@ namespace ProjectLinksServer.WebAPI.Migrations
             modelBuilder.Entity("ProjectLinksServer.WebAPI.Models.Category", b =>
                 {
                     b.Navigation("Projects");
+
+                    b.Navigation("SubCategories");
                 });
 
             modelBuilder.Entity("ProjectLinksServer.WebAPI.Models.Project", b =>

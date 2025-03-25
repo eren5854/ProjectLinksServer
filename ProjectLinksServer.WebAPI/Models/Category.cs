@@ -8,17 +8,19 @@ public sealed class Category : Entity
     public string CategoryName { get; set; } = default!;
     public string? Description { get; set; }
 
-    public object? MainCategoryInfo => new
-    {
-        MainCategoryId = MainCategoryId,
-        MainCategoryName = MainCategory?.CategoryName,
-        MainCategoryDescription = MainCategory?.Description
-    };
+    //public object? MainCategoryInfo => new
+    //{
+    //    MainCategoryId = MainCategoryId,
+    //    MainCategoryName = MainCategory?.CategoryName,
+    //    MainCategoryDescription = MainCategory?.Description
+    //};
 
     [JsonIgnore]
     public Guid? MainCategoryId { get; set; }
     [JsonIgnore]
     public Category? MainCategory { get; set; }
+
+    public List<Category>? SubCategories { get; set; }
 
     [JsonIgnore]
     public Guid AppUserId { get; set; }
