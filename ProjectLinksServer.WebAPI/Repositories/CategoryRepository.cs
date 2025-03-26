@@ -60,6 +60,7 @@ public sealed class CategoryRepository(
              .ThenInclude(t => t.Projects)
              .ThenInclude(t => t.Links)
              .Include(i => i.Projects)
+             .ThenInclude(i => i.Links)
              .ToListAsync(cancellationToken);
         return Result<List<Category>>.Succeed(categories);
     }

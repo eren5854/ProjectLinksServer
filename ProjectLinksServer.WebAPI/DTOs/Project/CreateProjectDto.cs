@@ -5,7 +5,7 @@ namespace ProjectLinksServer.WebAPI.DTOs.Project;
 public sealed record CreateProjectDto(
     string Title,
     string? Description,
-    int ListNumber,
+    int? ListNumber,
     IFormFile? Image,
     Guid CategoryId,
-    List<CreateLinkDto> Links);
+    List<CreateLinkDto>? Links);

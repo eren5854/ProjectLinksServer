@@ -17,5 +17,6 @@ public sealed class MappingProfile : Profile
         CreateMap<UpdateProjectDto, Project>();
 
         CreateMap<CreateLinkDto, Link>();
+        CreateMap<UpdateLinkDto, Link>();
     }
 }

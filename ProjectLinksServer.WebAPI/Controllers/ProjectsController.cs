@@ -18,6 +18,13 @@ public sealed class ProjectsController(
     }
 
     [HttpGet]
+    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
+    {
+        var response = await projectService.GetAll(cancellationToken);
+        return StatusCode(response.StatusCode, response);
+    }
+
+    [HttpGet]
     public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     {
         var response = await projectService.GetById(id, cancellationToken);

@@ -1,4 +1,5 @@
 ﻿using ED.Result;
+using GenericFileService.Files;
 using Microsoft.EntityFrameworkCore;
 using ProjectLinksServer.WebAPI.Context;
 using ProjectLinksServer.WebAPI.Models;
@@ -23,9 +24,21 @@ public sealed class ProjectRepository(
             return Result<string>.Failure("Project not found");
         }
 
+        FileService.FileDeleteToServer("wwwroot/Images/" + project.Image);
+
         context.Projects.Remove(project);
         await context.SaveChangesAsync(cancellationToken);
         return Result<string>.Succeed("Project deleted successfully");
+    }
+
+    public async Task<Result<List<Project>>> GetAll(CancellationToken cancellationToken)
+    {
+        List<Project> projects = await context
+            .Projects
+            .Include(i => i.Links)
+            .ToListAsync(cancellationToken);
+
+        return Result<List<Project>>.Succeed(projects);
     }
 
     public async Task<Result<Project>> GetById(Guid id, CancellationToken cancellationToken)

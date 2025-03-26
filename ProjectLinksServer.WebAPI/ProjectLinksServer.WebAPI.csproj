@@ -25,8 +25,4 @@
     <PackageReference Include="TS.FileService" Version="9.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\Images\" />
-  </ItemGroup>
-
 </Project>

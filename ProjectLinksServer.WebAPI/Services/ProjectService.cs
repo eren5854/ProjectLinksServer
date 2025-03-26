@@ -20,7 +20,7 @@ public sealed class ProjectService(
         }
         if (request.Image is not null)
         {
-            image = FileService.FileSaveToServer(request.Image,"wwwroot/Images");
+            image = FileService.FileSaveToServer(request.Image,"wwwroot/Images/");
         }
 
         Project project = mapper.Map<Project>(request);
@@ -45,7 +45,13 @@ public sealed class ProjectService(
 
     public async Task<Result<string>> Delete(Guid id, CancellationToken cancellationToken)
     {
+
         return await projectRepository.Delete(id, cancellationToken);
+    }
+
+    public async Task<Result<List<Project>>> GetAll(CancellationToken cancellationToken)
+    {
+        return await projectRepository.GetAll(cancellationToken);
     }
 
     public async Task<Result<Project>> GetById(Guid id, CancellationToken cancellationToken)
@@ -68,7 +74,7 @@ public sealed class ProjectService(
         }
         if (request.Image is not null)
         {
-            image = FileService.FileSaveToServer(request.Image, "wwwroot/Images");
+            image = FileService.FileSaveToServer(request.Image, "wwwroot/Images/");
             FileService.FileDeleteToServer("wwwroot/Images/" + project.Image);
         }
 
