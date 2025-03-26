@@ -1,0 +1,11 @@
+services:
+
+
+  api:
+    build:
+      context: .
+      dockerfile: ProjectLinksServer.WebAPI/Dockerfile
+    image: project-links-server
+    container_name: ProjectLinksServer
+    ports:
+      - 54070:8080
